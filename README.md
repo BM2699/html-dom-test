@@ -16,6 +16,6 @@ This is a personal recap website documenting my trip to Puerto Rico in March 202
 - CSS3 (with Google Fonts + responsive image)
 
 ##Credits
-Photos by Me and Jessie Zhai
-Background image featurs me and Queenie Hsiao
-chat.gpt & GitHub Copilot for debugging
+- Photos by Me and Jessie Zhai
+- Background image featurs me and Queenie Hsiao
+- chat.gpt & GitHub Copilot for debugging
