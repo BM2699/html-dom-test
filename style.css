@@ -1,4 +1,4 @@
-body { 
+.main-content {
     background-image: url('images/SAM_7684.JPG');
     background-size: cover;
     background-position: center;
@@ -37,6 +37,3 @@ p {
     text-decoration: none;
 }
 
-.main-content {
-    transition: opacity 0.5s ease;
-}
