@@ -28,4 +28,10 @@ p {
     font-size: 1.5em;
     text-align: left;
     margin-bottom: 20px;
+    transition: color 0.3s ease;
+}
+
+#instagram-link {
+    color:pink;
+    text-decoration: none;
 }
