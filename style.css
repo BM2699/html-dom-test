@@ -31,7 +31,12 @@ p {
     transition: color 0.3s ease;
 }
 
-#instagram-link {
-    color:pink;
+
+#instagram-link p {
+    color: pink;
     text-decoration: none;
+}
+
+.main-content {
+    transition: opacity 0.5s ease;
 }
