@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Coqui</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <video id="coqui-video" autoplay loop muted playsinline>
+            <source src="video/coqui_video.mp4" type="video/mp4">
+        </video>
+        
+        <a href="index.html" id="index-button">
+            <img src="images/beachicon.png" alt="beach" id="beachicon-image">
+        </a>
+        
+        <audio id="beach-sound" src="sound/beach_sound.mp3" preload="auto"></audio>
+        
+        <script>
+            const video = document.getElementById('coqui-video');
+            let soundEnabled = false;
+            
+            // Toggle sound on click
+            function toggleSound() {
+                soundEnabled = !soundEnabled;
+                video.muted = !soundEnabled;
+            }
+            
+            // Enable sound on first interaction (touch/keydown), then toggle on click
+            function enableSound() {
+                if (!soundEnabled) {
+                    video.muted = false;
+                    soundEnabled = true;
+                }
+            }
+            
+            // Listen for click to toggle sound
+            document.addEventListener('click', toggleSound);
+            // Listen for other interactions to enable sound initially
+            document.addEventListener('touchstart', enableSound);
+            document.addEventListener('keydown', enableSound);
+            
+            // Beach button hover sound
+            const beachButton = document.getElementById('index-button');
+            const beachSound = document.getElementById('beach-sound');
+            
+            if (beachButton && beachSound) {
+                beachButton.addEventListener('mouseenter', function() {
+                    beachSound.currentTime = 0; // Reset to start
+                    beachSound.play().catch(function(error) {
+                        // Handle autoplay restrictions
+                        console.log('Audio play failed:', error);
+                    });
+                });
+                
+                beachButton.addEventListener('mouseleave', function() {
+                    beachSound.pause();
+                    beachSound.currentTime = 0; // Reset to start for next hover
+                });
+            }
+        </script>
+    </body>
+
+</html>
