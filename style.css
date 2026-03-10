@@ -89,3 +89,57 @@ p {
     display: block;
 }
 
+/* Responsive images (work on all screen sizes) */
+#main-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Mobile and small screens */
+@media screen and (max-width: 768px) {
+    body {
+        background-attachment: scroll;
+    }
+
+    #main-content {
+        padding: 16px;
+        padding-bottom: 100px;
+        box-sizing: border-box;
+        align-items: stretch;
+    }
+
+    h1 {
+        font-size: 1.75em;
+        text-align: center;
+        margin-bottom: 16px;
+    }
+
+    p {
+        font-size: 1.1em;
+        text-align: center;
+        margin-bottom: 16px;
+    }
+
+    #main-content img {
+        margin: 12px auto;
+    }
+
+    #coqui-button {
+        bottom: 16px;
+        left: 16px;
+    }
+
+    #coqui-image {
+        width: 56px;
+    }
+
+    #index-button {
+        bottom: 16px;
+        left: 16px;
+    }
+
+    #beachicon-image {
+        width: 56px;
+    }
+}

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>LONGLIVEPUERTORICO032025</title>
         <link rel="stylesheet" href="style.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,6 +57,15 @@
     <audio id="coqui-sound" src="sound/coqui_sound.mp3" preload="auto"></audio>
     
     <script src="js/script.js"></script>
+
+    <script>
+        const isComp = window.matchMedia('(min-width: 600px)')
+
+        if (isComp.matches) {
+            alert("You're probably on a computer!");
+        }
+        
+    </script>
     </body>
 
 </html>

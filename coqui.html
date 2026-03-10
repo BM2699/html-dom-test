@@ -19,6 +19,9 @@
         <script>
             const video = document.getElementById('coqui-video');
             let soundEnabled = false;
+            // Coqui video volume: 0 = silent, 1 = full (max for HTML5 video)
+            const COQUI_VIDEO_VOLUME = 0.2;
+            video.volume = COQUI_VIDEO_VOLUME;
             
             // Toggle sound on click
             function toggleSound() {
@@ -30,33 +33,53 @@
             function enableSound() {
                 if (!soundEnabled) {
                     video.muted = false;
+                    video.volume = COQUI_VIDEO_VOLUME;
                     soundEnabled = true;
                 }
             }
             
+            // Unlock beach sound on first click/touch (browsers require this before hover can play audio)
+            let beachSoundUnlocked = false;
+            function unlockBeachSound() {
+                if (beachSoundUnlocked) return;
+                const s = document.getElementById('beach-sound');
+                if (s) {
+                    s.volume = 0;
+                    s.play().then(function() { s.pause(); s.currentTime = 0; s.volume = 1; }).catch(function() {});
+                    beachSoundUnlocked = true;
+                }
+            }
+            document.addEventListener('click', unlockBeachSound);
+            document.addEventListener('touchstart', unlockBeachSound);
+            document.addEventListener('keydown', unlockBeachSound);
+
             // Listen for click to toggle sound
             document.addEventListener('click', toggleSound);
             // Listen for other interactions to enable sound initially
             document.addEventListener('touchstart', enableSound);
             document.addEventListener('keydown', enableSound);
             
-            // Beach button hover sound
+            // Beach button hover sound (plain audio element – no Web Audio API)
             const beachButton = document.getElementById('index-button');
             const beachSound = document.getElementById('beach-sound');
-            
             if (beachButton && beachSound) {
-                beachButton.addEventListener('mouseenter', function() {
-                    beachSound.currentTime = 0; // Reset to start
-                    beachSound.play().catch(function(error) {
-                        // Handle autoplay restrictions
-                        console.log('Audio play failed:', error);
-                    });
-                });
-                
-                beachButton.addEventListener('mouseleave', function() {
+                beachSound.volume = 1;
+
+                function playBeachSound() {
+                    beachSound.currentTime = 0;
+                    beachSound.play().catch(function(err) { console.log('Beach sound:', err); });
+                }
+                function stopBeachSound() {
                     beachSound.pause();
-                    beachSound.currentTime = 0; // Reset to start for next hover
+                    beachSound.currentTime = 0;
+                }
+
+                beachButton.addEventListener('mouseenter', playBeachSound);
+                beachButton.addEventListener('mouseleave', stopBeachSound);
+                beachButton.addEventListener('touchstart', function(e) {
+                    playBeachSound();
                 });
+                beachButton.addEventListener('touchend', stopBeachSound);
             }
         </script>
     </body>
